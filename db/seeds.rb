@@ -13,10 +13,15 @@ FactoryBot.define do
     "user#{n}"
   end
 
+  sequence :language do |n|
+    ["en", "jp"][n % 2]
+  end
+
   factory :chat_message do
     kind { [:chat, :dead, :wish].sample }
     text
     ip_address
+    language
   end
 
   factory :vote do
@@ -33,6 +38,7 @@ FactoryBot.define do
   end
 
   factory :vote_history do
+    language
   end
 end
 

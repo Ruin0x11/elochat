@@ -19,13 +19,18 @@ ActiveRecord::Schema.define(version: 2019_05_09_201409) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "kind", limit: 2, null: false
+    t.integer "id_for_language", null: false
     t.string "text", null: false
     t.string "ip_address", null: false
+    t.string "language", null: false
+    t.index ["language"], name: "index_chat_messages_on_language"
   end
 
   create_table "vote_histories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "language", null: false
+    t.index ["language"], name: "index_vote_histories_on_language"
   end
 
   create_table "vote_users", force: :cascade do |t|

@@ -11,10 +11,10 @@ END
   end
 
   get "/vote.txt" do
-    resp = ""
-    VoteHistory.top_100.each_with_index do |vote, i|
-      resp << (i + 1).to_s << "<>" << vote.to_s
-    end
-    resp
+    VoteHistory.vote(:jp)
+  end
+
+  get "/voteen.txt" do
+    VoteHistory.vote(:en)
   end
 end
