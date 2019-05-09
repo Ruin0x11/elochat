@@ -1,34 +1,28 @@
 # -*- coding: cp932 -*-
-require "rubygems"
-require "bundler"
+require "sinatra/reloader"
 
-Bundler.require
+require "./models/init.rb"
+require "./routes/init.rb"
 
 class Elochat < Sinatra::Base
   register Sinatra::ActiveRecordExtension
-end
+  set :show_exceptions, false
+  set :raise_errors, true
 
-get "/log.txt" do
-  content_type 'text/plain;charset=shift_jis'
-  id = 1
-  resp = "#{id}<C>\n<!--START-->\n"
-  10.times do |i|
-    resp << i.to_s << '%' << DateTime.now.to_time.to_i.to_s << '%' << 1.to_s << "test" << '%' << "0.0.0.0" << "%\n"
+  before do
+    content_type "text/plain;charset=shift_jis"
   end
-  resp << "<!--END-->\n<!-- WebTalk v1.6 --><center><small><a href='http://www.kent-web.com/' target='_top'>WebTalk</a></small></center>"
-  resp
-end
 
-get "/text.txt" do
-  content_type 'text/plain;charset=shift_jis'
-  "<!--START-->\n%\n素敵な異名コンテスト♪1  [１ヶ月で自動リセット]%\nYour favorite alias♪1  [Auto reset every month]%"
-end
-
-get "/vote.txt" do
-  content_type 'text/plain;charset=shift_jis'
-  resp = ""
-  10.times do |i|
-    resp << 1.to_s << '<>' << "ruin" << '<>' << 10.to_s << '<>' << "0.0.0.0" << '<>' << DateTime.now.to_time.to_i.to_s << '#' << 100.to_s << '#' << '1' << "#<>\n"
+  configure :development do
+    register Sinatra::Reloader
+    enable :logging, :dump_errors, :raise_errors
   end
-  resp
+
+  error Sinatra::NotFound do
+    "Not found"
+  end
+
+  error do
+    env["sinatra.error"].errors
+  end
 end
