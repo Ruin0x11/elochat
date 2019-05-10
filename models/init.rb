@@ -1,4 +1,4 @@
-require "./models/chat_message.rb"
-require "./models/vote.rb"
-require "./models/vote_user.rb"
-require "./models/vote_history.rb"
+require "models/chat_message"
+require "models/vote"
+require "models/vote_user"
+require "models/vote_history"

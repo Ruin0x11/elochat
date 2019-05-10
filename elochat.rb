@@ -1,13 +1,15 @@
 # -*- coding: cp932 -*-
 require "sinatra/reloader"
 
-require "./models/init.rb"
-require "./routes/init.rb"
+require "models/init"
+require "routes/init"
+require "lib/webrick_monkey_patch"
 
 class Elochat < Sinatra::Base
   register Sinatra::ActiveRecordExtension
-  set :show_exceptions, false
-  set :raise_errors, true
+
+  enable :raise_errors
+  disable :show_exceptions, :record_ip_addrs
 
   before do
     content_type "text/plain;charset=shift_jis"
@@ -15,7 +17,7 @@ class Elochat < Sinatra::Base
 
   configure :development do
     register Sinatra::Reloader
-    enable :logging, :dump_errors, :raise_errors
+    enable :logging, :dump_errors, :show_exceptions
   end
 
   error Sinatra::NotFound do

@@ -1,2 +1,2 @@
-require "./routes/chat.rb"
-require "./routes/vote.rb"
+require "routes/chat"
+require "routes/vote"

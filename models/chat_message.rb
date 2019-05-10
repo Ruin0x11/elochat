@@ -3,18 +3,12 @@ class ChatMessage < ActiveRecord::Base
 
   before_validation :set_id_for_language
 
-  def self.log(lang)
-    messages = by_language(lang).order(id_for_language: :desc).limit(10)
-    resp = "#{latest_id(lang)}<C>\n<!--START-->\n"
-    messages.each do |mes|
-      resp << mes.to_s
-    end
-    resp << "<!--END-->\n<!-- WebTalk v1.6 --><center><small><a href='http://www.kent-web.com/' target='_top'>WebTalk</a></small></center>"
-    resp
-  end
-
   def self.by_language(lang)
     where(language: lang)
+  end
+
+  def self.most_recent(lang)
+    by_language(lang).order(id_for_language: :desc).limit(10)
   end
 
   def self.latest_id(lang)
