@@ -12,8 +12,8 @@ END
 
   def vote(lang)
     resp = ""
-    VoteHistory.current_votes(lang).each_with_index do |vote, i|
-      resp << (i + 1).to_s << "<>" << vote.to_s.encode("sjis")
+    VoteHistory.current_votes(lang).each do |vote|
+      resp << vote.id.to_s << "<>" << vote.to_s.encode("sjis")
     end
     resp
   end
@@ -31,11 +31,12 @@ END
 
     user = VoteUser.find_or_initialize_by(name: name) do |u|
       u.total_vote_count = 0
+      u.reset_at = DateTime.now
     end
 
     user.ip_address = (settings.record_ip_addrs && request.ip) || ""
 
-    hist = VoteHistory.current
+    hist = VoteHistory.current(lang)
     vote = Vote.find_or_initialize_by(vote_user: user, vote_history: hist) do |v|
       v.vote_count = 0
     end
@@ -45,7 +46,7 @@ END
   end
 
   def create_vote(lang)
-    number = params["namber"].to_i
+    number = params["namber"].to_i # this is now a database ID
 
     vote = VoteHistory.find_vote(lang, number)
     halt 400 if vote.nil?

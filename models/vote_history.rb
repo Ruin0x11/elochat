@@ -10,10 +10,7 @@ class VoteHistory < ActiveRecord::Base
     current(lang).votes.order(created_at: :desc).limit(100)
   end
 
-  def find_vote(lang, id)
-    # NOTE: The order of the votes can change between sending the
-    # registrant list and submitting a vote. If we record the IP of
-    # each request then the sent list indices can be cached by IP.
-    VoteHistory.current_votes(lang)[id]
+  def self.find_vote(lang, vote_id)
+    VoteHistory.current(lang).votes.where(id: vote_id).first
   end
 end

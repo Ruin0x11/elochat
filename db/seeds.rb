@@ -42,12 +42,14 @@ FactoryBot.define do
   end
 end
 
-100.times do
-  FactoryBot.create(:chat_message)
-end
+if ENV['RACK_ENV'] != "production"
+  100.times do
+    FactoryBot.create(:chat_message)
+  end
 
-200.times do
-  FactoryBot.create(:vote_user)
+  200.times do
+    FactoryBot.create(:vote_user)
+  end
 end
 
 2.times do
