@@ -10,7 +10,10 @@ class Elochat < Sinatra::Base
   register Sinatra::ActiveRecordExtension
 
   enable :raise_errors
-  disable :show_exceptions, :record_ip_addrs
+  disable :show_exceptions
+
+  # This is unused in the original code and also a privacy concern.
+  disable :record_ip_addrs
 
   before do
     content_type "text/plain;charset=shift_jis"

@@ -13,3 +13,10 @@ namespace :db do
     puts 'Reseeding completed.'
   end
 end
+
+namespace :elochat do
+  desc 'Start a new voting history. (To be run at the 1st of each month)'
+  task :new_vote do
+    VoteHistory.new_vote
+  end
+end

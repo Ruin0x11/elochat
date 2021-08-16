@@ -3,7 +3,7 @@ class VoteHistory < ActiveRecord::Base
   has_many :vote_users, through: :votes
 
   def self.current(lang)
-    where(language: lang).last
+    where(language: lang).order(created_at: :desc).first
   end
 
   def self.current_votes(lang)
@@ -12,5 +12,11 @@ class VoteHistory < ActiveRecord::Base
 
   def self.find_vote(lang, vote_id)
     VoteHistory.current(lang).votes.where(id: vote_id).first
+  end
+
+  def self.new_vote
+    [:en, :jp].each do |lang|
+      VoteHistory.create(language: lang)
+    end
   end
 end

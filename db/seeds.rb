@@ -18,7 +18,7 @@ FactoryBot.define do
   end
 
   factory :chat_message do
-    kind { [:chat, :dead, :wish].sample }
+    kind { [:chat, :dead, :wish, :marr].sample }
     text
     ip_address
     language

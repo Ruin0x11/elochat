@@ -1,5 +1,5 @@
 class ChatMessage < ActiveRecord::Base
-  enum kind: [ :chat, :dead, :wish ]
+  enum kind: [ :chat, :dead, :wish, :marr ]
 
   before_validation :set_id_for_language
 
