@@ -1,2 +1,2 @@
-require "routes/chat"
-require "routes/vote"
+require "./routes/chat"
+require "./routes/vote"

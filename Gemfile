@@ -20,3 +20,5 @@ group :development, :test do
   gem "irb", "~> 1.0"
   gem "factory_bot", "~> 5.0"
 end
+
+gem "rack", "~> 2.2"

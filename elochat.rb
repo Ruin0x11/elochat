@@ -1,9 +1,10 @@
 # -*- coding: cp932 -*-
 require "sinatra/reloader"
+require "sinatra/activerecord"
 
-require "models/init"
-require "routes/init"
-require "lib/webrick_monkey_patch"
+require "./models/init"
+require "./routes/init"
+require "./lib/webrick_monkey_patch"
 
 class Elochat < Sinatra::Base
   register Sinatra::ActiveRecordExtension

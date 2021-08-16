@@ -2,3 +2,5 @@
 /.bundle/
 /vendor/
 /.byebug_history
+postgres/
+sockets/
