@@ -21,6 +21,8 @@ test:
 production:
   <<: *default
   database: elochat_production
+  host: localhost
+  password: postgres
   min_messages: error
   pool: 30
   reconnect: true

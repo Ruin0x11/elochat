@@ -6,6 +6,12 @@ require "./models/init"
 require "./routes/init"
 require "./lib/webrick_monkey_patch"
 
+if ENV["RACK_ENV"] == "production"
+  configure do
+    set :server, :puma
+  end
+end
+
 class Elochat < Sinatra::Base
   register Sinatra::ActiveRecordExtension
 

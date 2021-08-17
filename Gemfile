@@ -22,3 +22,4 @@ group :development, :test do
 end
 
 gem "rack", "~> 2.2"
+gem "puma", "~> 5.4"
