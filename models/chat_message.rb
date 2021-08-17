@@ -8,7 +8,7 @@ class ChatMessage < ActiveRecord::Base
   end
 
   def self.most_recent(lang)
-    by_language(lang).order(id_for_language: :desc).limit(10)
+    by_language(lang).order(id_for_language: :desc).limit(30)
   end
 
   def self.latest_id(lang)
