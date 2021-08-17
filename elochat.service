@@ -1,0 +1,20 @@
+[Unit]
+Description=elochat
+After=network.target
+Requires=network.target postgresql.service
+[Service]
+Type=simple
+# Preferably configure a non-privileged user
+User=root
+
+# Specify the path to your puma application root
+WorkingDirectory=/path/to/elochat
+
+Environment="DISCORD_WEBHOOK_EN=<...>"
+Environment="DISCORD_WEBHOOK_JP=<...>"
+
+# The command to start Puma, use 'which puma' to get puma's bin path, specify your config/puma.rb file
+ExecStart=/path/to/.rvm/bin/rvm all do bundle exec rackup -o 0.0.0.0 -p 9292 -s webrick -E development -d -w
+Restart=always
+[Install]
+WantedBy=multi-user.target
