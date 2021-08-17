@@ -20,4 +20,13 @@ log = File.new("/app/elochat/log/stderr.log", "a+")
 $stderr.reopen(log)
 $stderr.sync = true
 
+require "rack/attack"
+use Rack::Attack
+Rack::Attack.enabled = true
+Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
+
+Rack::Attack.throttle('request per ip', limit: 10, period: 60) do |request|
+  request.ip
+end
+
 run Elochat

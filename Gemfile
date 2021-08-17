@@ -8,6 +8,7 @@ gem "sinatra-activerecord", "~> 2.0"
 gem "rack", "~> 2.2"
 gem "puma", "~> 5.4"
 gem "discordrb-webhooks", "~> 3.4"
+gem "rack-attack", "~> 6.5"
 
 group :test do
   gem "minitest", "~> 5.11"
