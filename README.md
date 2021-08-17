@@ -23,4 +23,4 @@ See `elochat.service` for additional configuration options.
 
 ## Notes
 
-When adding a DNS record pointing to the server, you have to prepend `www.` to the beginning of the host because of a backwards compatibility issue (the original code prepends it to the configured server name). So `elochat.ruin.xyz` would become `www.elonachat.ruin.xyz`.
+When adding a DNS record pointing to the server, you have to prepend `www.` to the beginning of the host because of a backwards compatibility issue (the original code prepends it to the configured server name). So `elochat.ruin.xyz` would become `www.elochat.ruin.xyz`.
