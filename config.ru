@@ -25,8 +25,8 @@ use Rack::Attack
 Rack::Attack.enabled = true
 Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
 
-Rack::Attack.throttle('request per ip', limit: 10, period: 60) do |request|
-  request.ip
-end
+# Rack::Attack.throttle('request per ip', limit: 10, period: 60) do |request|
+#   request.ip
+# end
 
 run Elochat
