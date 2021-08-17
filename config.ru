@@ -12,4 +12,12 @@ module Rack
   end
 end
 
+log = File.new("/app/elochat/log/stdout.log", "a+")
+$stdout.reopen(log)
+$stdout.sync = true
+
+log = File.new("/app/elochat/log/stderr.log", "a+")
+$stderr.reopen(log)
+$stderr.sync = true
+
 run Elochat

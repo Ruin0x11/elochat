@@ -7,7 +7,7 @@ development:
   <<: *default
   database: elochat_development
   host: localhost
-  # password: devpassword
+  password: postgres
   timeout: 5000
 
 test:
@@ -15,7 +15,7 @@ test:
   database: elochat_test
   host: localhost
   min_messages: warning
-  # password: testpassword
+  password: postgres
   timeout: 5000
 
 production:

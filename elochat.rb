@@ -6,17 +6,21 @@ require "discordrb/webhooks"
 require "./models/init"
 require "./routes/init"
 
-if ENV["RACK_ENV"] == "production"
-  configure do
-    set :server, :puma
-  end
+# if ENV["RACK_ENV"] == "production"
+#   configure do
+#     set :server, :puma
+#   end
+# end
+
+configure do
+  set :server, :webrick
 end
 
-if settings.server == :puma
-  require "./lib/puma_monkey_patch"
-else
-  require "./lib/webrick_monkey_patch"
-end
+#if settings.server == :puma
+#  require "./lib/puma_monkey_patch"
+#else
+#  require "./lib/webrick_monkey_patch"
+#end
 
 class Elochat < Sinatra::Base
   register Sinatra::ActiveRecordExtension
