@@ -46,7 +46,10 @@ END
   end
 
   def create_vote(lang)
-    number = params["namber"].to_i # this is now a database ID
+    number = params["namber"] 
+    halt 400 unless number =~ /^\d+$/
+
+    number = number.to_i # this is now a database ID
 
     vote = VoteHistory.find_vote(lang, number)
     halt 400 if vote.nil?
@@ -60,11 +63,11 @@ END
 
     if params["mode"] == "wri"
       if params.key? "vote"
-	create_vote_user language
+        create_vote_user language
       elsif params.key? "namber"
-	create_vote language
+        create_vote language
       else
-	halt 400
+        halt 400
       end
     else
       halt 400

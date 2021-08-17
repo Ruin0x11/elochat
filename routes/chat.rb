@@ -19,7 +19,11 @@ class Elochat < Sinatra::Base
   end
 
   def create_message(language)
+    halt 400 unless params.key? "comment"
+
     comment = params["comment"]
+    halt 400 unless comment.length > 4
+
     kind = comment[0..3]
     text = comment[4..-1]
     ip_address = (settings.record_ip_addrs && request.ip) || ""
