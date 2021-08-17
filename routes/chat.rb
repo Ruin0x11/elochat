@@ -26,7 +26,14 @@ class Elochat < Sinatra::Base
 
     halt 400 unless ChatMessage.kinds.key? kind
 
-    ChatMessage.create(kind: kind, text: text, language: language, ip_address: ip_address)
+    mes = ChatMessage.create(kind: kind, text: text, language: language, ip_address: ip_address)
+
+    webhook_client = settings.webhook_clients[language]
+    if webhook_client
+      webhook_client.execute do |builder|
+        builder.content = "__#{mes.date_string}:__ #{mes.text}"
+      end
+    end
   end
 
   get "/cgi-bin/wtalk/wtalk2.cgi" do

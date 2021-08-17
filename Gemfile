@@ -5,6 +5,9 @@ gem "pg", "~> 1.1"
 gem "rake", "~> 12.3"
 gem "sinatra", "~> 2.0"
 gem "sinatra-activerecord", "~> 2.0"
+gem "rack", "~> 2.2"
+gem "puma", "~> 5.4"
+gem "discordrb-webhooks", "~> 3.4"
 
 group :test do
   gem "minitest", "~> 5.11"
@@ -20,6 +23,3 @@ group :development, :test do
   gem "irb", "~> 1.0"
   gem "factory_bot", "~> 5.0"
 end
-
-gem "rack", "~> 2.2"
-gem "puma", "~> 5.4"
