@@ -35,6 +35,7 @@ class Elochat < Sinatra::Base
     webhook_client = settings.webhook_clients[language]
     if webhook_client
       webhook_client.execute do |builder|
+        builder.allowed_mentions = Discordrb::AllowedMentions.new(parse: [])
         builder.content = "__#{mes.date_string}:__ #{mes.text}"
       end
     end

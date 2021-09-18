@@ -6,7 +6,8 @@ gem "rake", "~> 12.3"
 gem "sinatra", "~> 2.0"
 gem "sinatra-activerecord", "~> 2.0"
 gem "rack", "~> 2.2"
-gem "discordrb-webhooks", "~> 3.4"
+gem 'discordrb', github: 'shardlab/discordrb', ref: '79568216389529fe69fa1d429dd7f9772dcd0fb8'
+#gem "discordrb-webhooks", "~> 3.4"
 gem "rack-attack", "~> 6.5"
 
 group :test do

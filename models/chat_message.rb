@@ -20,7 +20,7 @@ class ChatMessage < ActiveRecord::Base
   end
 
   def date_string
-    created_at.strftime("%-m/%d(%M)")
+    created_at.strftime("%-m/%d (%M)")
   end
 
   private
