@@ -3,7 +3,7 @@ source "https://rubygems.org"
 gem "addressable", "~> 2.6"
 gem "pg", "~> 1.1"
 gem "rake", "~> 12.3"
-gem "sinatra", "~> 2.0"
+gem "sinatra", "~> 2.2"
 gem "sinatra-activerecord", "~> 2.0"
 gem "rack", "~> 2.2"
 gem 'discordrb', github: 'shardlab/discordrb', ref: '79568216389529fe69fa1d429dd7f9772dcd0fb8'
